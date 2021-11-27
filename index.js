@@ -1,17 +1,22 @@
 function updateMap()
 {
-    var i = 0; //Comment it for data.json
-    fetch("/latestdata.json")    
+    var i = 0;
+    fetch("/latestdata.json")  
     .then(response => response.json())
     .then(rsp => {
-    //  console.log(rsp.data)
-        rsp.forEach(element => {  //Will have to change rsp.forEach to rsp.data.forEach for data.json
+        rsp.forEach(element => {
+    // fetch("/data.json")  
+    // .then(response => response.json())
+    // .then(rsp => {
+        // rsp.data.forEach(element => {
             // latitude = element.coordinates;
             // longitude = element.longitude;
             // cases = element.infected;
+            
             latitude = element.coordinates[1];  
             longitude = element.coordinates[0];
             cases = element.cases;
+            
             if(cases>255){
                 color = "rgb(255, 0, 0)" 
             }
@@ -28,7 +33,8 @@ function updateMap()
                 .setLngLat([longitude, latitude])
                 .addTo(map);
             }
-            i = i+1; //Comment it for data.json
+            //Comment it for data.json
+            i = i+1;
         });
     })
 }
